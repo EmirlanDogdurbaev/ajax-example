@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect, useState } from "react";
+import "./App.css";
+import Albums from "./components/Albums/Albums";
+import Comments from "./components/Comments/Comments";
+import FullPosts from "./components/FullPosts/FullPosts";
+import Pictures from "./components/Pictures/Pictures";
+import Posts from "./components/Posts/Posts";
 function App() {
+  const [selectedAlbum, setSelectedAlbum] = useState(0);
+  let pictures = "Select a album";
+  if (setSelectedAlbum) {
+    pictures = <Pictures albumId={selectedAlbum} />;
+  }
+  const [selectedComment , setSelectedComment] = useState(0);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  
+      <Posts />
+      
+     <Comments setSelectedComment={setSelectedAlbum}/>
+      <FullPosts /> 
+      <Albums setSelectedAlbum={setSelectedAlbum} />
+      {pictures}
     </div>
   );
 }
-
 export default App;
